@@ -1,2 +1,2 @@
 # 柒柒
-MY PAGE
+MY STATIC PAGE
