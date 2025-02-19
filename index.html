@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pone</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Welcome</h1>
+            <p class="subtitle">探索 • 创新 • 成长</p>
+        </header>
+        
+        <main class="main-content">
+            <div id="imageCarousel"></div>
+            <section class="about-section">
+                <h2>关于我</h2>
+                <p>你好！我是一名充满热情的开发者，热爱技术创新，致力于通过代码创造价值。我相信技术能够改变世界，让生活变得更好。</p>
+            </section>
+
+            <section class="interests-section">
+                <h2>兴趣爱好</h2>
+                <div class="interests-grid">
+                    <div class="interest-item">
+                        <h3>📚 技术学习</h3>
+                        <p>持续关注前沿技术发展，享受学习新知识带来的乐趣</p>
+                    </div>
+                    <div class="interest-item">
+                        <h3>🏍️ 风和自由</h3>
+                        <p>热爱自由驰骋的感觉，享受骑行带来的速度与激情</p>
+                    </div>
+                    <div class="interest-item">
+                        <h3>🎱 台球运动</h3>
+                        <p>追求精准与专注，在台球运动中提升自我与交友</p>
+                    </div>
+                </div>
+            </section>
+            <section class="social-links-section">
+                <h2>社交主页</h2>
+                <div class="social-links-grid">
+                    <a href="https://github.com/zhanpeng-xue" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i>
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://www.facebook.com/profile.php?id=61573137719559" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-facebook"></i>
+                        <span>FaceBook</span>
+                    </a>
+                    <a href="https://juejin.cn/user/1128564701542652" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-book"></i>
+                        <span>掘金</span>
+                    </a>
+                </div>
+            </section>
+        </main>
+        
+        <footer class="footer">
+            <p>© 2025 BY XUEXUE All rights reserved.</p>
+        </footer>
+    </div>
+
+    <canvas id="heartCanvas"></canvas>
+    <script src="js/hearts.js"></script>
+    <script src="js/carousel.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const carousel = new Carousel(document.getElementById('imageCarousel'));
+        });
+    </script>
+</body>
+</html>
