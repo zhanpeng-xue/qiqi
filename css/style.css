@@ -44,7 +44,7 @@ body {
     background: linear-gradient(45deg, #ff6b6b, #ffd93d);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .subtitle {
@@ -94,14 +94,21 @@ body {
     width: 100%;
     padding: 15px;
     background-color: rgba(0, 0, 0, 0.6);
-    color: white;
     text-align: center;
-    opacity: 0;
     transition: opacity 0.3s ease;
+    font-size: 1.2em;
+    font-weight: bold;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    background-image: linear-gradient( 135deg, #6B73FF 10%, #000DFF 100%);
+    text-shadow: 0 0 10px rgba(137, 207, 240, 0.5),
+        0 0 20px rgba(106, 90, 205, 0.3),
+        0 0 30px rgba(72, 61, 139, 0.2);
 }
 
 .carousel-slide:hover .carousel-caption {
-    opacity: 1;
+    /* opacity: 1; */
 }
 
 .carousel-control {
@@ -222,7 +229,8 @@ body {
     }
 }
 
-.about-section:hover, .skills-section:hover {
+.about-section:hover,
+.skills-section:hover {
     transform: translateY(-5px);
 }
 
@@ -232,14 +240,16 @@ h2 {
     color: #ff6b6b;
 }
 
-.interests-grid, .projects-grid {
+.interests-grid,
+.projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
     margin-top: 2rem;
 }
 
-.interest-item, .project-item {
+.interest-item,
+.project-item {
     background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
     padding: 1.5rem;
@@ -321,6 +331,7 @@ h2 {
         opacity: 0;
         transform: translateY(20px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -331,11 +342,11 @@ h2 {
     .container {
         padding: 1rem;
     }
-    
+
     .header h1 {
         font-size: 2.5rem;
     }
-    
+
     .subtitle {
         font-size: 1rem;
     }
@@ -349,7 +360,8 @@ h2 {
         gap: 2rem;
     }
 
-    .about-section, .skills-section {
+    .about-section,
+    .skills-section {
         padding: 1.5rem;
     }
 
@@ -368,7 +380,8 @@ h2 {
         font-size: 0.9rem;
     }
 
-    .about-section, .skills-section {
+    .about-section,
+    .skills-section {
         padding: 1.2rem;
     }
 
@@ -386,6 +399,123 @@ h2 {
     }
 }
 
+@media (min-width: 769px) and (max-width: 1024px) {
+    .container {
+        max-width: 90%;
+    }
+
+    .interests-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (hover: hover) {
+    .interest-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+
+    .about-section:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+    }
+}.wechat-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(145deg, #32e67d, #2acc68);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.5s ease;
+    box-shadow: 6px 6px 12px rgba(38, 166, 91, 0.4),
+                -6px -6px 12px rgba(46, 204, 113, 0.1),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.3),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.1);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+.wechat-button i {
+    font-size: 28px;
+    color: #fff;
+    transition: all 0.5s ease;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.wechat-button:hover {
+    transform: scale(1.1) translateY(-2px) rotate(360deg);
+    background: linear-gradient(145deg, #27ae60, #2ecc71);
+    box-shadow: 8px 8px 16px rgba(38, 166, 91, 0.6),
+                -8px -8px 16px rgba(46, 204, 113, 0.2),
+                inset 1px 1px 2px rgba(255, 255, 255, 0.4),
+                inset -1px -1px 2px rgba(0, 0, 0, 0.2),
+                0 10px 20px rgba(46, 204, 113, 0.3);
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.wechat-button:hover i {
+    transform: scale(1.2);
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.wechat-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    text-align: center;
+}
+
+.wechat-modal img {
+    max-width: 200px;
+    border-radius: 5px;
+}
+
+.wechat-modal p {
+    margin-top: 10px;
+    color: #333;
+    font-size: 14px;
+}
+
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+}
+
+.close-modal {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    color: #666;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #333;
+}
 @media (min-width: 769px) and (max-width: 1024px) {
     .container {
         max-width: 90%;

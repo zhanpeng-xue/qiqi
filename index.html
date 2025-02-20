@@ -56,10 +56,18 @@
                 </div>
             </section>
         </main>
-        
+        <button class="wechat-button">
+            <i class="fab fa-weixin"></i>
+        </button>
         <footer class="footer">
             <p>© 2025 BY XUEXUE All rights reserved.</p>
         </footer>
+    </div>
+    <div class="modal-overlay"></div>
+    <div class="wechat-modal">
+        <button class="close-modal">&times;</button>
+        <img src="images/wechat-qr.jpg" alt="微信二维码">
+        <p>扫描二维码添加微信</p>
     </div>
 
     <canvas id="heartCanvas"></canvas>
@@ -68,6 +76,29 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const carousel = new Carousel(document.getElementById('imageCarousel'));
+    
+            // 微信二维码弹窗交互
+            const wechatButton = document.querySelector('.wechat-button');
+            const wechatModal = document.querySelector('.wechat-modal');
+            const modalOverlay = document.querySelector('.modal-overlay');
+            const closeModal = document.querySelector('.close-modal');
+    
+            function showModal() {
+                wechatModal.style.display = 'block';
+                modalOverlay.style.display = 'block';
+            }
+    
+            function hideModal() {
+                wechatModal.style.display = 'none';
+                modalOverlay.style.display = 'none';
+            }
+    
+            wechatButton.addEventListener('click', () => {
+                showModal();
+            });
+    
+            closeModal.addEventListener('click', hideModal);
+            modalOverlay.addEventListener('click', hideModal);
         });
     </script>
 </body>

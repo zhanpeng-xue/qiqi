@@ -3,12 +3,17 @@ class Carousel {
         this.container = container;
         this.options = {
             autoplay: true,
-            interval: 5000,
+            interval: 2000,
             duration: 500,
             ...options
         };
 
         this.currentIndex = 0;
+        this.isDragging = false;
+        this.startPos = 0;
+        this.currentTranslate = 0;
+        this.prevTranslate = 0;
+        this.animationID = 0;
         this.images = [
             { src: 'images/slide1.jpg', alt: '金海湖' },
             { src: 'images/slide2.jpg', alt: '秦皇岛' },
@@ -26,9 +31,89 @@ class Carousel {
     init() {
         this.createCarousel();
         this.createControls();
+        this.addTouchEvents();
         if (this.options.autoplay) {
             this.startAutoplay();
         }
+    }
+
+    addTouchEvents() {
+        this.slideContainer.addEventListener('mousedown', (e) => {
+            e.preventDefault();
+            this.touchStart(e);
+        });
+        this.slideContainer.addEventListener('touchstart', (e) => {
+            e.preventDefault();
+            this.touchStart(e);
+        });
+        this.slideContainer.addEventListener('mouseup', (e) => {
+            e.preventDefault();
+            this.touchEnd(e);
+        });
+        this.slideContainer.addEventListener('touchend', (e) => {
+            e.preventDefault();
+            this.touchEnd(e);
+        });
+        this.slideContainer.addEventListener('mousemove', (e) => {
+            e.preventDefault();
+            this.touchMove(e);
+        });
+        this.slideContainer.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            this.touchMove(e);
+        });
+        this.slideContainer.addEventListener('mouseleave', (e) => {
+            e.preventDefault();
+            this.touchEnd(e);
+        });
+
+        // 阻止图片的默认点击行为
+        this.slideContainer.addEventListener('click', (e) => {
+            e.preventDefault();
+        });
+    }
+
+    touchStart(event) {
+        this.isDragging = true;
+        this.startPos = this.getPositionX(event);
+        this.stopAutoplay();
+        cancelAnimationFrame(this.animationID);
+    }
+
+    touchMove(event) {
+        if (!this.isDragging) return;
+        event.preventDefault();
+        const currentPosition = this.getPositionX(event);
+        const diff = currentPosition - this.startPos;
+        this.currentTranslate = this.prevTranslate + diff;
+        this.setSlidePosition(this.currentTranslate);
+    }
+
+    touchEnd() {
+        this.isDragging = false;
+        const movedBy = this.currentTranslate - this.prevTranslate;
+
+        if (Math.abs(movedBy) > 100) {
+            if (movedBy > 0) {
+                this.prev();
+            } else {
+                this.next();
+            }
+        } else {
+            this.goTo(this.currentIndex);
+        }
+
+        if (this.options.autoplay) {
+            this.startAutoplay();
+        }
+    }
+
+    getPositionX(event) {
+        return event.type.includes('mouse') ? event.pageX : event.touches[0].clientX;
+    }
+
+    setSlidePosition(position) {
+        this.slideContainer.style.transform = `translateX(${position}px)`;
     }
 
     createCarousel() {
@@ -93,15 +178,33 @@ class Carousel {
 
     updateSlides() {
         const slides = this.slideContainer.querySelectorAll('.carousel-slide');
-        slides.forEach((slide, index) => {
-            slide.style.transform = `translateX(${(index - this.currentIndex) * 100}%)`;
+        const position = -this.currentIndex * this.container.offsetWidth;
+        this.currentTranslate = position;
+        this.prevTranslate = position;
+        
+        // 先移除所有活动状态
+        slides.forEach(slide => {
+            slide.classList.remove('active');
+            slide.style.opacity = '0';
         });
+
+        // 设置当前幻灯片为活动状态
+        slides[this.currentIndex].classList.add('active');
+        slides[this.currentIndex].style.opacity = '1';
+        
+        this.slideContainer.style.transition = 'transform 0.3s ease-out';
+        this.setSlidePosition(position);
 
         // 更新指示器
         const dots = this.container.querySelectorAll('.carousel-dot');
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === this.currentIndex);
         });
+
+        // 重置过渡效果
+        setTimeout(() => {
+            this.slideContainer.style.transition = '';
+        }, 300);
     }
 
     next() {
