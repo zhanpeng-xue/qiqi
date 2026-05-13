@@ -11,16 +11,25 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>Welcome</h1>
+            <h1>Xue Zhanpeng</h1>
             <p class="subtitle">探索 • 创新 • 成长</p>
+            <div style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.7;">💡 代码构筑梦想 | 激情驱动未来</div>
         </header>
         
-        <main class="main-content">
+        <div class="motto-section">
+            <div class="quote-icon"><i class="fas fa-quote-left"></i></div>
+            <div class="motto-text" id="dynamicMotto">“ 代码如诗，生活如画，在二进制与山海之间寻找平衡。” </div>
+            <div class="motto-author">—— · 自省语录</div>
+        </div>
+
+        <main class="main-content"> 
             <div id="imageCarousel"></div>
             <section class="about-section">
-                <h2>关于我</h2>
-                <p>你好！我是一名充满热情的开发者，热爱技术创新，致力于通过代码创造价值。我相信技术能够改变世界，让生活变得更好。</p>
+                <h2>✨ 关于我</h2>
+                <p>你好！我是一名充满热情的开发者，热爱技术创新，致力于通过代码创造价值。我相信技术能够改变世界，让生活变得更好。<br>
+                🚀 全栈探索者 | 开源爱好者 | 持续交付优雅解决方案，同时也是一名骑行旅拍与生活纪实爱好者。</p>
             </section>
+
 
             <section class="interests-section">
                 <h2>兴趣爱好</h2>
@@ -54,6 +63,14 @@
                         <i class="fas fa-book"></i>
                         <span>掘金</span>
                     </a>
+                    <a href="1844992095" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-camera-retro"></i>
+                        <span>小🍠</span>
+                    </a>
+                    <a href="45942929414" class="social-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fas fa-camera-retro"></i>
+                        <span>抖音</span>
+                    </a>
                 </div>
             </section>
         </main>
@@ -61,7 +78,7 @@
             <i class="fab fa-weixin"></i>
         </button>
         <footer class="footer">
-            <p>© 2025 BY XUEXUE All rights reserved.</p>
+            <p>© 2026 BY XUEXUE All rights reserved.</p>
         </footer>
     </div>
     <div class="modal-overlay"></div>
@@ -74,6 +91,7 @@
     <canvas id="heartCanvas"></canvas>
     <script src="js/hearts.js"></script>
     <script src="js/carousel.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const carousel = new Carousel(document.getElementById('imageCarousel'));
@@ -100,6 +118,29 @@
     
             closeModal.addEventListener('click', hideModal);
             modalOverlay.addEventListener('click', hideModal);
+
+            const mottoList = [
+                "“ 把代码写进诗里，把远方装进后座。”",
+                "“ 热爱可抵岁月漫长，技术亦是浪漫主义。”",
+                "“ 以好奇心为钥匙，探索未知的每一扇门。”",
+                "“ 写优雅的代码，过滚烫的人生。”",
+                "“ 在二进制世界构建理想，在山海之间安放灵魂。”"
+            ];
+            let mottoIdx = 0;
+            function rotateMotto() {
+                const mottoDiv = document.querySelector('.motto-text');
+                if(mottoDiv) {
+                    mottoIdx = (mottoIdx + 1) % mottoList.length;
+                    mottoDiv.style.opacity = '0';
+                    setTimeout(() => {
+                        mottoDiv.innerText = mottoList[mottoIdx];
+                        mottoDiv.style.transition = 'opacity 0.6s';
+                        mottoDiv.style.opacity = '1';
+                    }, 200);
+                }
+            }
+            setInterval(rotateMotto, 2000);
+
         });
     </script>
 </body>

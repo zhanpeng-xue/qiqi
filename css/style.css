@@ -6,7 +6,6 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
     color: #ffffff;
     min-height: 100vh;
     position: relative;
@@ -536,4 +535,32 @@ h2 {
         transform: translateY(-5px);
         box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
     }
+}
+
+.gallery-section:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 24px 36px -14px rgba(0, 0, 0, 0.12);
+    background: rgba(255,255,255,0.85);
+    
+}
+.gallery-section{
+    background: rgba(255,255,255,0.75);
+    backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    padding: 2rem 2rem;
+    margin-bottom: 3rem;
+    border: 1px solid rgba(255,255,255,0.7);
+    box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.motto-section {
+    background: linear-gradient(115deg, rgba(99,102,241,0.1) 0%, rgba(139,92,246,0.1) 100%);
+    backdrop-filter: blur(8px);
+    border-radius: 2rem;
+    padding: 1.8rem 2rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    border: 1px solid rgba(139,92,246,0.3);
+    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.05);
 }

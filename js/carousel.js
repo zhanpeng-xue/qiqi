@@ -21,8 +21,13 @@ class Carousel {
             { src: 'images/slide4.jpg', alt: '天津妈祖文化园' },
             { src: 'images/slide5.jpg', alt: '广州珠江' },
             { src: 'images/slide6.jpg', alt: '秦皇岛' },
-            { src: 'images/slide7.jpg', alt: '天津东堤公园' },
-            { src: 'images/slide8.jpg', alt: '天津国家海洋博物馆' }
+            { src: 'images/me2.jpg', alt: '花瓣机车氛围' },
+            { src: 'images/me3.jpg', alt: '该你冒险了' },
+            { src: 'images/motul1.jpg', alt: '纯爱摩托' },
+            { src: 'images/qiqi.jpg', alt: '柒柒' },
+            { src: 'images/qinhuangdaome1.jpg', alt: '秦皇岛沙滩' },
+            { src: 'images/xiaomaidao.jpg', alt: '小麦岛' },
+            { src: 'images/qingdaome1.jpg', alt: '青岛' }
         ];
 
         this.init();
